@@ -1,10 +1,10 @@
 
 const $fab42eb3dee39b5b$export$55abd4691b317664 = window.history;
 const $fab42eb3dee39b5b$export$ba0fd82af7b4fe6e = $fab42eb3dee39b5b$export$55abd4691b317664.pushState;
-const $fab42eb3dee39b5b$export$30c2a0095db95d06 = function() {
+const $fab42eb3dee39b5b$export$30c2a0095db95d06 = function () {
     let favicon;
     const nodeList = document.getElementsByTagName("link");
-    for(let i = 0; i < nodeList.length; i++){
+    for (let i = 0; i < nodeList.length; i++) {
         const rel = nodeList[i].getAttribute("rel");
         if (rel === "icon" || rel === "shortcut icon") favicon = nodeList[i];
     }
@@ -19,8 +19,8 @@ function $fab42eb3dee39b5b$export$62d5ab75f7bffae3(data, callback) {
         if (callback.resolve) callback.resolve(result);
     } else if (callback.reject) callback.reject(new Error("Doesn't match"));
 }
-$fab42eb3dee39b5b$export$55abd4691b317664.pushState = function(state) {
-    setTimeout(function() {
+$fab42eb3dee39b5b$export$55abd4691b317664.pushState = function (state) {
+    setTimeout(function () {
         $dc2966de588d0343$export$c4e279a88e6f5a80({
             type: 'history-state-changed',
             navState: {
@@ -36,11 +36,11 @@ $fab42eb3dee39b5b$export$55abd4691b317664.pushState = function(state) {
 
 
 
-const $dc2966de588d0343$export$c4e279a88e6f5a80 = function(data) {
+const $dc2966de588d0343$export$c4e279a88e6f5a80 = function (data) {
     window.ReactNativeWebView ? window.ReactNativeWebView.postMessage(JSON.stringify(data)) : window.postMessage(JSON.stringify(data));
 };
 class $dc2966de588d0343$export$3ec1ce42a7e09129 extends Error {
-    constructor(...args){
+    constructor(...args) {
         super(...args);
         this.name = "Unauthorized";
         this.id = 4100;
@@ -49,7 +49,7 @@ class $dc2966de588d0343$export$3ec1ce42a7e09129 extends Error {
     }
 }
 class $dc2966de588d0343$export$3bee5a6718626f58 extends Error {
-    constructor(...args){
+    constructor(...args) {
         super(...args);
         this.name = "UserRejectedRequest";
         this.id = 4001;
@@ -64,7 +64,7 @@ function $dc2966de588d0343$export$6ffaaff3791e4fb3(payload, result) {
         result: result
     };
 }
-window.ReactNativeWebView.onMessage = function(message) {
+window.ReactNativeWebView.onMessage = function (message) {
     const data = JSON.parse(message);
     const id = data.messageId;
     const callback = $149c1bd638913645$export$b89c5c1b934d8237[id];
@@ -129,7 +129,7 @@ window.ReactNativeWebView.onMessage = function(message) {
         }
     }
 };
-const $dc2966de588d0343$export$bfd39fdfb84f21cc = (payload)=>{
+const $dc2966de588d0343$export$bfd39fdfb84f21cc = (payload) => {
     if (payload.method == "eth_accounts" && typeof window.wootzappAppcurrentAccountAddress !== "undefined") return $dc2966de588d0343$export$6ffaaff3791e4fb3(payload, [
         window.wootzappAppcurrentAccountAddress
     ]);
@@ -153,15 +153,15 @@ function $149c1bd638913645$export$33845a8bc26fa336(permission, pars) {
         messageId: messageId,
         params: params
     });
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         params['resolve'] = resolve;
         params['reject'] = reject;
         $149c1bd638913645$export$b89c5c1b934d8237[messageId] = params;
     });
 }
 class $149c1bd638913645$export$fb92d2d856d3013a {
-    constructor(){
-        this.getContactCode = ()=>{
+    constructor() {
+        this.getContactCode = () => {
             return $149c1bd638913645$export$33845a8bc26fa336('contact-code');
         };
     }
@@ -177,16 +177,16 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
             regex: regex
         });
     }
-    constructor(){
-        this.isHumaniq = true;
+    constructor() {
+        this.isWootzapp = true;
         this.isMetamask = false;
         this.wootzapp = new $149c1bd638913645$export$fb92d2d856d3013a();
-        this.isConnected = ()=>true
-        ;
+        this.isConnected = () => true
+            ;
         this.networkVersion = window.wootzappAppNetworkId;
         this.chainId = "0x" + Number(window.wootzappAppNetworkId).toString(16);
         this.networkId = window.wootzappAppNetworkId;
-        this.sendAsync = (payload, callback)=>{
+        this.sendAsync = (payload, callback) => {
             if (window.wootzappAppDebug) console.log("sendAsync (legacy)" + JSON.stringify(payload));
             if (!payload) return new Error('Request is not valid.');
             if (payload.method == 'eth_requestAccounts') return $149c1bd638913645$export$33845a8bc26fa336('web3', {
@@ -202,7 +202,7 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
                         results: [],
                         callback: callback
                     };
-                    for(const i in payload)$dc2966de588d0343$export$c4e279a88e6f5a80({
+                    for (const i in payload) $dc2966de588d0343$export$c4e279a88e6f5a80({
                         type: 'web3-send-async-read-only',
                         messageId: messageId,
                         payload: payload[i]
@@ -219,15 +219,15 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
                 }
             }
         };
-        this.sendSync = (payload)=>{
+        this.sendSync = (payload) => {
             if (window.wootzappAppDebug) console.log("sendSync (legacy)" + JSON.stringify(payload));
-            if (payload.method == "eth_uninstallFilter") this.sendAsync(payload, function(res, err) {
+            if (payload.method == "eth_uninstallFilter") this.sendAsync(payload, function (res, err) {
             });
             const syncResponse = $dc2966de588d0343$export$bfd39fdfb84f21cc(payload);
             if (syncResponse) return syncResponse;
             else return $dc2966de588d0343$export$6ffaaff3791e4fb3(payload, null);
         };
-        this.request = (requestArguments)=>{
+        this.request = (requestArguments) => {
             try {
                 if (!requestArguments) return new Error('Request is not valid.');
                 const method = requestArguments.method;
@@ -240,7 +240,7 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
                 const syncResponse = $dc2966de588d0343$export$bfd39fdfb84f21cc({
                     method: method
                 });
-                if (syncResponse) return new Promise(function(resolve, reject) {
+                if (syncResponse) return new Promise(function (resolve, reject) {
                     resolve(syncResponse.result);
                 });
                 const messageId = $149c1bd638913645$export$b2200e4c6a46d0b6++;
@@ -258,7 +258,7 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
                         url: location.href
                     }
                 });
-                return new Promise(function(resolve, reject) {
+                return new Promise(function (resolve, reject) {
                     $149c1bd638913645$export$b89c5c1b934d8237[messageId] = {
                         beta: true,
                         resolve: resolve,
@@ -271,7 +271,7 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
                 });
             }
         };
-        this.send = (method, params = [])=>{
+        this.send = (method, params = []) => {
             if (window.wootzappAppDebug) console.log("send (legacy): " + method);
             return this.request({
                 method: method,
@@ -280,22 +280,22 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
         };
         this._events = {
         };
-        this.on = (name, listener)=>{
+        this.on = (name, listener) => {
             if (!this._events[name]) this._events[name] = [];
             this._events[name].push(listener);
         };
-        this.removeListener = (name, listenerToRemove)=>{
+        this.removeListener = (name, listenerToRemove) => {
             if (!this._events[name]) return;
-            const filterListeners = (listener)=>listener !== listenerToRemove
-            ;
+            const filterListeners = (listener) => listener !== listenerToRemove
+                ;
             this._events[name] = this._events[name].filter(filterListeners);
         };
-        this.removeAllListeners = ()=>{
+        this.removeAllListeners = () => {
             this._events = [];
         };
-        this.emit = (name, data)=>{
+        this.emit = (name, data) => {
             if (!this._events[name]) return;
-            this._events[name].forEach((cb)=>cb(data)
+            this._events[name].forEach((cb) => cb(data)
             );
         };
     }
@@ -303,5 +303,5 @@ class $149c1bd638913645$export$cdfbbad9b2980226 {
 window.ethereum = new $149c1bd638913645$export$cdfbbad9b2980226();
 
 
-export {$149c1bd638913645$export$b2200e4c6a46d0b6 as callbackId, $149c1bd638913645$export$b89c5c1b934d8237 as callbacks, $149c1bd638913645$export$33845a8bc26fa336 as sendAPIrequest, $149c1bd638913645$export$fb92d2d856d3013a as HumaniqAPI, $149c1bd638913645$export$cdfbbad9b2980226 as EthereumProvider};
+export { $149c1bd638913645$export$b2200e4c6a46d0b6 as callbackId, $149c1bd638913645$export$b89c5c1b934d8237 as callbacks, $149c1bd638913645$export$33845a8bc26fa336 as sendAPIrequest, $149c1bd638913645$export$fb92d2d856d3013a as WootzappAPI, $149c1bd638913645$export$cdfbbad9b2980226 as EthereumProvider };
 //# sourceMappingURL=wootzapp-module.js.map

@@ -34,16 +34,16 @@ export function sendAPIrequest(permission: string, pars?: any) {
   })
 }
 
-export class HumaniqAPI {
+export class WootzappAPI {
   getContactCode = () => {
     return sendAPIrequest('contact-code')
   }
 }
 
 export class EthereumProvider {
-  isHumaniq = true
+  isWootzapp = true
   isMetamask = false
-  wootzapp = new HumaniqAPI()
+  wootzapp = new WootzappAPI()
   isConnected = () => true
 
   networkVersion = window.wootzappAppNetworkId

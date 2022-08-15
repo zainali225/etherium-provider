@@ -15,13 +15,13 @@ export let callbacks: {
     [key: number]: any;
 };
 export function sendAPIrequest(permission: string, pars?: any): Promise<unknown>;
-export class HumaniqAPI {
+export class WootzappAPI {
     getContactCode: () => Promise<unknown>;
 }
 export class EthereumProvider {
-    isHumaniq: boolean;
+    isWootzapp: boolean;
     isMetamask: boolean;
-    wootzapp: HumaniqAPI;
+    wootzapp: WootzappAPI;
     isConnected: () => boolean;
     networkVersion: number;
     chainId: string;
